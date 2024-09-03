@@ -33,7 +33,7 @@ import vscodeIcon from '/assets/img/vscode-icon.png';
                         <li class="text-lg md:text-xl my-2"><font-awesome-icon icon="fa-regular fa-thumbs-up"
                                 class="size-6 mr-2" /> Playing Games</li>
                         <li class="text-lg md:text-xl my-2"><font-awesome-icon icon="fa-regular fa-thumbs-up"
-                                class="size-6 mr-2" /> Watching Movies and Movies</li>
+                                class="size-6 mr-2" /> Watching Movies and Anime</li>
                         <li class="text-lg md:text-xl my-2"><font-awesome-icon icon="fa-regular fa-thumbs-up"
                                 class="size-6 mr-2" /> Working on Personal Projects</li>
                     </ul>
