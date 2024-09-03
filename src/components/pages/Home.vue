@@ -95,7 +95,7 @@ onMounted(() => {
 
                 <div class=" text-dark-600">
                     <p class="mb-5 text-base md:text-lg drop-shadow-lg">
-                        I fell in love with web development, and I’m constantly learning and growing in the field.
+                        I'm passionate about web development and always eager to learn and grow in the field.
                     </p>
 
                     <p class="mb-5 text-base md:text-lg drop-shadow-lg">
