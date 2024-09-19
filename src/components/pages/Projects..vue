@@ -84,7 +84,7 @@ import oairProject from '/assets/img/project-screenshot/oair-project.png';
                         <p class="text-justify text-sm md:text-base">
                             Online Agricultural Insurance System developed with vanilla PHP, Bootstrap, CSS, and
                             JavaScript. This system simplifies insurance management for farmers, offering
-                            functionalities to apply for various types of insurance, process payments.
+                            functionalities to apply for various types of insurance.
                             It streamlines the insurance process, making it more
                             accessible and efficient for farmers.
                         </p>
