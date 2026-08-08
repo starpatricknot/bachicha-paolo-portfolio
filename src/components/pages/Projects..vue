@@ -1,127 +1,117 @@
 <script setup>
-import srsProject from '/assets/img/project-screenshot/srs-project.png';
-import pmsProject from '/assets/img/project-screenshot/pms-project.png';
-import oairProject from '/assets/img/project-screenshot/oair-project.png';
+import { projectCaseStudies, archiveProjects } from '@/data/portfolioData.js';
 </script>
 
 <template>
-    <section class="container-xl py-14">
-        <div class=" max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- <h1 class="text-2xl md:text-4xl font-semibold text-dark-600 mb-6 text-center">MY RESUME</h1> -->
-            <div class="text-center mb-8">
-                <h1 class="text-2xl md:text-4xl font-bold text-dark-600 text-center xl:mb-3 drop-shadow-lg">MY RECENT
-                    <span class="text-red-600">WORKS</span>
-                </h1>
-                <p class="text-md md:text-lg text-dark-600 drop-shadow-lg">Here are some of the few projects I've made
-                    recently.</p>
-            </div>
+    <div class="container-xl py-14">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
 
-            <!-- SKILLS and TOOLS Showcase -->
-            <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
-                <div
-                    class="card card-normal bg-white shadow-xl hover:bg-white border hover:border-white transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300">
-                    <figure class="px-5 pt-5">
-                        <img :src="srsProject" alt="Specialization Recommendation System Image"
-                            class="rounded-xl shadow-sm border border-slate-300" />
-                    </figure>
-                    <div class="card-body text-dark-600 p-4">
-                        <h2 class="card-title justify-center text-center text-lg md:text-xl">Specialization
-                            Recommendation System</h2>
-                        <p class="text-justify text-sm md:text-base">
-                            Specialization Recommendation System for personalized career and learning paths, built with
-                            vanilla PHP, Bootstrap, CSS, and JavaScript. Features include machine learning for
-                            grade-based and assessment-based recommendations, plus OpenAI integration for
-                            preference-based suggestions.
-                        </p>
-                        <div class="card-actions justify-center">
-                            <a href="https://github.com/starpatricknot/specialization-recommendation-system" target="_blank"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-brands fa-github" class="size-6" /> Github
-                            </a>
-                            <!-- <a href="https://github.com/starpatricknot/specialization-recommendation-system"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-solid fa-laptop-code" class="size-6" /> Demo
-                            </a> -->
-                        </div>
-                    </div>
+            <!-- Section 1: Enterprise Case Studies -->
+            <div>
+                <div class="text-center mb-12">
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        FEATURED <span class="text-teal-700">CASE STUDIES</span>
+                    </h1>
+                    <p class="text-slate-700 text-base sm:text-lg font-medium max-w-2xl mx-auto">
+                        Enterprise software built for production environments using Flutter, Clean Architecture, and
+                        RESTful APIs.
+                    </p>
                 </div>
-                <div
-                    class="card card-normal bg-white shadow-xl hover:bg-white border hover:border-white transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300">
-                    <figure class="px-5 pt-5">
-                        <img :src="pmsProject" alt="Specialization Recommendation System Image"
-                            class="rounded-xl shadow-sm border border-slate-300" />
-                    </figure>
-                    <div class="card-body text-dark-600 p-4">
-                        <h2 class="card-title justify-center text-center text-lg md:text-xl">Project Management System
-                        </h2>
-                        <p class="text-justify text-sm md:text-base">
-                            Project Management System developed with vanilla PHP, Bootstrap, CSS, and JavaScript. It
-                            helps companies manage and organize projects and tasks efficiently, improving workflow and
-                            productivity. Features include task tracking, project timelines, and a communication system
-                            where project managers and employees can add comments on task updates.
-                        </p>
-                        <div class="card-actions justify-center">
-                            <a href="https://github.com/starpatricknot/project_management_system" target="_blank"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-brands fa-github" class="size-6" /> Github
-                            </a>
-                            <!-- <a href="https://github.com/starpatricknot/specialization-recommendation-system"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-solid fa-laptop-code" class="size-6" /> Demo
-                            </a> -->
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="card card-normal bg-white shadow-xl hover:bg-white border hover:border-white transition ease-in-out delay-100 hover:-translate-y-1 hover:scale-105 duration-300">
-                    <figure class="px-5 pt-5">
-                        <img :src="oairProject" alt="Specialization Recommendation System Image"
-                            class="rounded-xl shadow-sm border border-slate-300" />
-                    </figure>
-                    <div class="card-body text-dark-600 p-4">
-                        <h2 class="card-title justify-center text-center text-lg md:text-xl">Online Agricultural
-                            Insurance System</h2>
-                        <p class="text-justify text-sm md:text-base">
-                            Online Agricultural Insurance System developed with vanilla PHP, Bootstrap, CSS, and
-                            JavaScript. This system simplifies insurance management for farmers, offering
-                            functionalities to apply for various types of insurance.
-                            It streamlines the insurance process, making it more
-                            accessible and efficient for farmers.
-                        </p>
-                        <div class="card-actions justify-center">
-                            <a href="https://github.com/starpatricknot/oair_system" target="_blank"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-brands fa-github" class="size-6" /> Github
-                            </a>
-                            <!-- <a href="https://github.com/starpatricknot/specialization-recommendation-system"
-                                class="btn border-none bg-red-700 text-white">
-                                <font-awesome-icon icon="fa-solid fa-laptop-code" class="size-6" /> Demo
-                            </a> -->
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div v-for="study in projectCaseStudies" :key="study.id"
+                        class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-2xl hover:border-teal-500/50 transition-all duration-300">
+                        <div>
+                            <span class="text-xs font-mono text-teal-400 uppercase tracking-wider font-bold">
+                                {{ study.category }}
+                            </span>
+                            <h2 class="text-2xl font-bold text-slate-100 my-2">{{ study.title }}</h2>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-6 font-normal">{{ study.description }}
+                            </p>
+
+                            <!-- Tech Stack Pills -->
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span v-for="tech in study.stack" :key="tech"
+                                    class="px-3 py-1 rounded bg-slate-800 text-teal-300 text-xs font-mono border border-teal-500/30">
+                                    {{ tech }}
+                                </span>
+                            </div>
+
+                            <!-- Architecture Highlights -->
+                            <h3 class="text-xs font-mono text-slate-400 uppercase tracking-wider font-semibold mb-3">Key
+                                Development Highlights</h3>
+                            <ul
+                                class="space-y-2 border-t border-slate-800 pt-4 text-xs text-slate-300 list-disc list-inside">
+                                <li v-for="(highlight, idx) in study.highlights" :key="idx">
+                                    {{ highlight }}
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div>
-    </section>
+            <!-- Section 2: Previous Web & Capstone Systems -->
+            <div class="border-t border-slate-300 pt-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+                        PREVIOUS <span class="text-teal-700">PROJECTS</span>
+                    </h2>
+                    <p class="text-slate-700 text-base font-medium max-w-2xl mx-auto">
+                        Full-stack web applications and software systems built during earlier freelance and academic
+                        work.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div v-for="project in archiveProjects" :key="project.id"
+                        class="flex flex-col bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden hover:border-teal-500/50 transition-all duration-300 hover:-translate-y-1">
+
+                        <figure class="p-4 bg-slate-950/50 border-b border-slate-800">
+                            <img :src="project.image" :alt="project.title"
+                                class="w-full h-48 object-cover rounded-xl border border-slate-800 shadow-sm" />
+                        </figure>
+
+                        <div class="flex flex-col flex-grow p-6 text-slate-300">
+                            <span class="text-xs font-mono text-teal-400 font-semibold mb-1">{{ project.type }}</span>
+                            <h3 class="text-xl font-bold text-slate-100 mb-3">{{ project.title }}</h3>
+
+                            <p class="text-sm leading-relaxed text-slate-300 mb-6 flex-grow font-normal">
+                                {{ project.description }}
+                            </p>
+
+                            <!-- Tech Stack -->
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span v-for="tech in project.stack" :key="tech"
+                                    class="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-mono border border-slate-700">
+                                    {{ tech }}
+                                </span>
+                            </div>
+
+                            <div class="flex justify-center pt-2 mt-auto border-t border-slate-800/80">
+                                <a :href="project.github" target="_blank" rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-800 text-teal-300 border border-slate-700 font-semibold text-sm hover:bg-slate-700 hover:border-teal-400 hover:text-teal-200 transition-colors duration-200 shadow-md">
+                                    <font-awesome-icon icon="fa-brands fa-github" class="size-5" />
+                                    Source Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
 </template>
 
 <style scoped>
-/* Ensure the card image is responsive */
-.card img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Responsive card text */
-.card-body p {
-    margin-bottom: 1rem;
-}
-
-/* Adjust the card size and layout on different screen sizes */
-@media (max-width: 640px) {
-    .card {
-        max-width: 100%;
-    }
+.container-xl {
+    background-image: url('/assets/img/programmer-bg-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #f8fafc;
+    padding: 4rem 0;
 }
 </style>

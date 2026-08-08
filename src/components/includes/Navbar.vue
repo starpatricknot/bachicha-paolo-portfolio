@@ -1,159 +1,113 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import logo from '/assets/img/logo-v3.png';
 
-// Reactive state for mobile menu visibility
+// Route setup (called once at top level)
+const route = useRoute();
 const isMenuOpen = ref(false);
 
-const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value;
-};
-
-const isActiveLink = (routePath) => {
-    const route = useRoute();
-    return route.path === routePath;
-};
+const isActiveLink = (routePath) => route.path === routePath;
 
 const closeMenu = () => {
     isMenuOpen.value = false;
 };
 
-// Close menu when clicking outside of it
-const handleClickOutside = (event) => {
-    const drawer = document.querySelector('.drawer-side');
-    if (drawer && !drawer.contains(event.target) && isMenuOpen.value) {
-        closeMenu();
-    }
-};
-
-onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
-});
-
-onUnmounted(() => {
-    document.removeEventListener('click', handleClickOutside);
-});
+// Centralized navigation configuration
+const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Resume', path: '/resume' },
+    { name: 'Contact', path: '/contact' }
+];
 </script>
 
 <template>
-    <header class="bg-slate-900 sticky top-0 z-50">
-        <div class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-4">
+    <header
+        class="sticky top-0 z-50 backdrop-blur-md bg-slate-900/90 border-b border-slate-800/60 shadow-lg transition-all duration-300">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
-                <div class="flex-1 md:flex md:items-center md:gap-12">
-                    <a class="block text-teal-600" href="#">
-                        <span class="sr-only">Home</span>
-                        <img class="h-8 w-auto" :src="logo" alt="Logo" />
-                    </a>
+
+                <!-- Brand Logo -->
+                <div class="flex-shrink-0">
+                    <RouterLink to="/" class="flex items-center gap-2 group" @click="closeMenu">
+                        <img :src="logo" alt="Logo"
+                            class="h-8 w-auto transition-transform duration-300 group-hover:scale-105" />
+                    </RouterLink>
                 </div>
 
-                <div class="md:flex md:items-center md:gap-12">
-                    <nav aria-label="Global" class="hidden md:block">
-                        <ul class="flex items-center gap-7 text-md">
-                            <li>
-                                <RouterLink to="/"
-                                    :class="['text-gray-500', isActiveLink('/') ? 'text-white' : 'hover:text-white']"
-                                    @click="closeMenu">
-                                    Home
-                                </RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/about"
-                                    :class="['text-gray-500', isActiveLink('/about') ? 'text-white' : 'hover:text-white']"
-                                    @click="closeMenu">
-                                    About
-                                </RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/projects"
-                                    :class="['text-gray-500', isActiveLink('/projects') ? 'text-white' : 'hover:text-white']"
-                                    @click="closeMenu">
-                                    Projects
-                                </RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/resume"
-                                    :class="['text-gray-500', isActiveLink('/resume') ? 'text-white' : 'hover:text-white']"
-                                    @click="closeMenu">
-                                    Resume
-                                </RouterLink>
-                            </li>
-                            <li>
-                                <RouterLink to="/contact"
-                                    :class="['text-gray-500', isActiveLink('/contact') ? 'text-white' : 'hover:text-white']"
-                                    @click="closeMenu">
-                                    Contact
-                                </RouterLink>
-                            </li>
-                        </ul>
-                    </nav>
+                <!-- Desktop Navigation Links -->
+                <nav aria-label="Global" class="hidden md:block">
+                    <ul class="flex items-center gap-8 text-sm font-medium">
+                        <li v-for="item in navItems" :key="item.path">
+                            <RouterLink :to="item.path" :class="[
+                                'relative py-2 transition-colors duration-200',
+                                isActiveLink(item.path)
+                                    ? 'text-teal-400 font-semibold'
+                                    : 'text-slate-300 hover:text-white'
+                            ]">
+                                {{ item.name }}
+                                <!-- Animated Active Indicator -->
+                                <span v-if="isActiveLink(item.path)"
+                                    class="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-teal-400 transition-all duration-300"></span>
+                            </RouterLink>
+                        </li>
+                    </ul>
+                </nav>
 
-                    <div class="flex items-center gap-4">
-                        <div class="block md:hidden">
-                            <input id="my-drawer-4" type="checkbox" class="drawer-toggle" v-model="isMenuOpen" />
-                            <label for="my-drawer-4"
-                                class="drawer-button btn btn-sm btn-primary bg-blue-gray-900 border-none text-white hover:bg-blue-gray-800">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </label>
-                        </div>
-                    </div>
+                <!-- Right Action & Mobile Toggle -->
+                <div class="flex items-center gap-4">
+                    <!-- CTA Button -->
+                    <RouterLink to="/contact"
+                        class="hidden md:inline-flex items-center justify-center rounded-lg bg-teal-500/10 px-4 py-2 text-sm font-medium text-teal-400 border border-teal-500/20 hover:bg-teal-500/20 hover:border-teal-500/40 transition-all duration-200">
+                        Let's Talk
+                    </RouterLink>
+
+                    <!-- Mobile Hamburger / Close Button -->
+                    <button type="button"
+                        class="inline-flex items-center justify-center rounded-md p-2 text-slate-300 hover:bg-slate-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-teal-500/50 md:hidden"
+                        @click="isMenuOpen = !isMenuOpen" :aria-expanded="isMenuOpen"
+                        aria-label="Toggle Navigation Menu">
+                        <svg class="h-6 w-6 transition-transform duration-200" :class="{ 'rotate-90': isMenuOpen }"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path v-if="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                            <path v-else stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
+
             </div>
         </div>
     </header>
 
-    <!-- Drawer Structure -->
-    <div class="drawer drawer-end">
-        <input id="my-drawer-4" type="checkbox" class="drawer-toggle" v-model="isMenuOpen" />
-        <div class="drawer-content">
-            <!-- Page content here -->
+    <!-- Mobile Drawer Overlay -->
+    <Transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0"
+        enter-to-class="opacity-100" leave-active-class="transition duration-200 ease-in" leave-from-class="opacity-100"
+        leave-to-class="opacity-0">
+        <div v-if="isMenuOpen" class="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm md:hidden" @click="closeMenu">
         </div>
-        <div class="drawer-side mt-16 z-50">
-            <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay" @click="closeMenu"></label>
-            <ul class="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                <!-- Sidebar content here -->
-                <li>
-                    <RouterLink to="/" :class="['text-gray-500', isActiveLink('/') ? 'text-white' : 'hover:text-white']"
-                        @click="closeMenu">
-                        Home
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/about"
-                        :class="['text-gray-500', isActiveLink('/about') ? 'text-white' : 'hover:text-white']"
-                        @click="closeMenu">
-                        About
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/projects"
-                        :class="['text-gray-500', isActiveLink('/projects') ? 'text-white' : 'hover:text-white']"
-                        @click="closeMenu">
-                        Portfolio
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/resume"
-                        :class="['text-gray-500', isActiveLink('/resume') ? 'text-white' : 'hover:text-white']"
-                        @click="closeMenu">
-                        Resume
-                    </RouterLink>
-                </li>
-                <li>
-                    <RouterLink to="/contact"
-                        :class="['text-gray-500', isActiveLink('/contact') ? 'text-white' : 'hover:text-white']"
-                        @click="closeMenu">
-                        Contact
+    </Transition>
+
+    <!-- Mobile Side Drawer -->
+    <Transition enter-active-class="transition duration-300 ease-out transform" enter-from-class="translate-x-full"
+        enter-to-class="translate-x-0" leave-active-class="transition duration-200 ease-in transform"
+        leave-from-class="translate-x-0" leave-to-class="translate-x-full">
+        <aside v-if="isMenuOpen"
+            class="fixed top-16 right-0 bottom-0 z-40 w-64 bg-slate-900 border-l border-slate-800/80 p-6 shadow-2xl md:hidden overflow-y-auto">
+            <ul class="flex flex-col gap-3 text-base font-medium">
+                <li v-for="item in navItems" :key="item.path">
+                    <RouterLink :to="item.path" :class="[
+                        'block rounded-lg px-4 py-2.5 transition-all duration-200',
+                        isActiveLink(item.path)
+                            ? 'bg-teal-500/10 text-teal-400 font-semibold border-l-4 border-teal-400'
+                            : 'text-slate-300 hover:bg-slate-800/60 hover:text-white'
+                    ]" @click="closeMenu">
+                        {{ item.name }}
                     </RouterLink>
                 </li>
             </ul>
-        </div>
-    </div>
+        </aside>
+    </Transition>
 </template>
-
-<style scoped>
-/* You may need to add custom styles for drawer if necessary */
-</style>
