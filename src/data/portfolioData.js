@@ -92,18 +92,18 @@ export const projectCaseStudies = [
             "Ensured zero data loss during network interruptions using local queueing."
         ]
     },
-    {
-        id: "custom-laravel-client-apps",
-        title: "Freelance Client Web Portals",
-        category: "Web Development",
-        stack: ["PHP", "Laravel", "MySQL", "Bootstrap 5", "JavaScript"],
-        description: "Tailored full-stack client portals and web management interfaces for local small-to-medium businesses.",
-        highlights: [
-            "Built custom relational database schemas in MySQL with relational integrity.",
-            "Implemented role-based access control (RBAC) and authentication using Laravel.",
-            "Designed fully responsive interfaces compatible across mobile and desktop devices."
-        ]
-    }
+    // {
+    //     id: "custom-laravel-client-apps",
+    //     title: "Freelance Client Web Portals",
+    //     category: "Web Development",
+    //     stack: ["PHP", "Laravel", "MySQL", "Bootstrap 5", "JavaScript"],
+    //     description: "Tailored full-stack client portals and web management interfaces for local small-to-medium businesses.",
+    //     highlights: [
+    //         "Built custom relational database schemas in MySQL with relational integrity.",
+    //         "Implemented role-based access control (RBAC) and authentication using Laravel.",
+    //         "Designed fully responsive interfaces compatible across mobile and desktop devices."
+    //     ]
+    // }
 ];
 
 // Older Web & Capstone Projects
